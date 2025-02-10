@@ -1,46 +1,101 @@
-# Getting Started with Create React App
+React Activity Tracker
+A real-time activity tracker built with React, Redux, and WebSockets to display user activities dynamically. This project follows best practices, including reusable components, modular architecture, and maintainability.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+Real-Time WebSocket Integration: Receives and updates activities instantly.
+State Management with Redux Toolkit: Efficiently manages activity state.
+Debounced Search: Filter activities with a 300ms debounce delay.
+TypeScript Support: Ensures type safety and better maintainability.
+Unit Tests: Jest tests for WebSocket handling and Redux state updates.
 
-## Available Scripts
+Tech Stack
+React (Functional Components + Hooks)
+Redux Toolkit (State Management)
+Socket.io (WebSocket Communication)
+TypeScript (Strong Typing)
+Jest (Unit Testing)
+Lodash (Debounced Search Implementation)
 
-In the project directory, you can run:
+Folder Structure
+react-activity-tracker/
+Project Structure
+src/ - Main source folder
+components/ - Contains reusable UI components
+organisms/ - Higher-level components
+ActivityTracker.tsx
+hooks/ - Custom React hooks
+useWebSocket.ts
+redux/ - Redux state management
+store.ts - Configures the Redux store
+slices/ - Redux slices (reducers)
+activitySlice.ts
+services/ - Handles WebSocket and API interactions
+WebSocketService.ts
+tests/ - Unit test files
+useWebSocket.test.ts
+activitySlice.test.ts
+App.tsx - Main application entry point
+index.tsx - React app entry file
+Root Files
+package.json - Dependencies and scripts
+README.md - Project documentation
+tsconfig.json - TypeScript configuration
+.gitignore - Files to ignore in Git
 
-### `npm start`
+Setup & Installation
+1️ Prerequisites
+Ensure you have the following installed:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Node.js (>= 18.x)
+npm (>= 9.x) or yarn (>= 8.x)
+2️ Clone the Repository
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+git clone https://github.com/Tekdokto/react-activity-tracker.git
+cd react-activity-tracker
+3️ Install Dependencies
 
-### `npm test`
+npm install
+# or
+yarn install
+4️ Start the Application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm start
+# or
+yarn start
+The app will run on http://localhost:3000/.
 
-### `npm run build`
+Running Tests
+To ensure everything is working correctly, run:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npm test
+# or
+yarn test
+This will execute Jest unit tests for Redux and WebSocket integration.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+📌 Assumptions
+WebSocket events are received in the format "User X performed Y action".
+The backend WebSocket server already exists and emits activity events.
+No authentication is required; activities are displayed globally.
+The Redux store only holds real-time activity data, no historical storage.
+🔍 Areas for Improvement
+Given more time, we could:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Persist Activities in LocalStorage/Database
 
-### `npm run eject`
+Currently, activities disappear on refresh. A database connection would improve user experience.
+Improve WebSocket Reconnection Handling
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Right now, the WebSocket connection is established once. Implementing auto-reconnect on disconnects would improve reliability.
+Add User-Specific Activity Tracking
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Currently, all activities are anonymous. We could introduce user sessions to track individual actions.
+Enhance UI/UX
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Improve styling, animations, and notifications for a better experience.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Best Practices Followed
+ Component Reusability (Separate components for Activity List, Search Bar, etc.)
+ Separation of Concerns (WebSockets in a separate service, Redux in a dedicated folder)
+ Type Safety with TypeScript (Prevents runtime errors)
+ Unit Testing (Ensures reliable WebSocket and Redux interactions)
+ Scalability (Easy to extend features like filtering, sorting, and user-based tracking)
